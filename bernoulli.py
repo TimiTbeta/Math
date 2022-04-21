@@ -20,7 +20,7 @@ con = [
   [0,1],
   [1, 93555],
   [0, 1],
-  [1, 638512875]
+  [691, 638512875]
 ]
 
 def main():
@@ -61,7 +61,7 @@ def main():
         q = q / gcd
       
       B[f"{n}"].append([int(p), int(q)])
-      
+
   #output
   for i in range(len(B)):
     print("{}: ".format(i), end="")
