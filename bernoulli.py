@@ -1,13 +1,13 @@
 import math
-#係数の保管
+#Dictionary of the coefficient of each r
 dict = {
   "0": [[1,1]],
   "1": [[-1,2], [1,1]]
 }
 
 B = dict.copy()
-#コーシー真値
-cof = [
+#Constant
+con = [
   [0,1],
   [0,1],
   [1, 6],
@@ -37,10 +37,10 @@ def main():
     factorial = math.factorial(n)
     for k in range(len(dict[f"{n-1}"])+1):
       p = q = 1
-      #分子・分母の既約分数
+      
       if k == 0:
-        p = cof[n][0]
-        q = cof[n][1] * math.pow(2, n-1)
+        p = con[n][0]
+        q = con[n][1] * math.pow(2, n-1)
         if minus:
           p *= -1
       elif k == 1:
@@ -51,15 +51,18 @@ def main():
         q = k*dict[f"{n-1}"][k-1][1]
       
       dict[f"{n}"].append([int(p), int(q)])
-      
+         
       p *= factorial
+      
+      #Irreducible fractionl
       gcd = math.gcd(int(p), int(q))
       if gcd != 1:
         p = p / gcd 
         q = q / gcd
       
       B[f"{n}"].append([int(p), int(q)])
-  
+      
+  #output
   for i in range(len(B)):
     print("{}: ".format(i), end="")
     for j in range(len(B[f"{i}"])):
